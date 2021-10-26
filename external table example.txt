@@ -1,0 +1,26 @@
+1. SSH to HDFS
+
+2. Copy file(s) to HDFS server
+
+3. HDFS permissions
+export HADOOP_USER_NAME=hdfs_user
+
+4. Make new directory
+hdfs dfs -mkdir /abc/path1/new_folder_name
+
+5. Copy file
+hdfs dfs -copyFromLocal /home/user/new_file.csv /abc/path1/new_folder_name
+
+6. Create table
+CREATE EXTERNAL TABLE IF NOT EXISTS db.newTable
+(
+id string,
+field1 string,
+field2 decimal
+field3 date
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+location '/abc/path1/new_folder_name'
+tlbproperties ("skip.header.line.count"="1");
